@@ -38,7 +38,7 @@ public class FetchGetUsers {
 	System.out.println("\n\nEnd of Test 1\n\n");
 	}
 	
-	@Test (priority=2)
+	@Test(priority=2)
 	public void getUsersList2()
 	{
 		
@@ -74,7 +74,7 @@ public class FetchGetUsers {
 		System.out.println("\n\n End of Test 2\n\n");
 	}
 	
-	@Test (priority=3)
+	@Test(priority=3)
 	public void getUsersList3()
 	{
 		
@@ -84,7 +84,7 @@ public class FetchGetUsers {
 	Response res=	given()
 		.pathParam("mypath", "users")
 		
-		.queryParam("page", "3")
+		.queryParam("page", "4")
 		.contentType("application/json")
 		
 		.when()
@@ -94,15 +94,15 @@ public class FetchGetUsers {
 		.header("Content-Type", "application/json; charset=utf-8")
 		.assertThat().statusCode(200)
 		//.assertThat().body("data[0].email","george.bluth@reqres.in")
-		.body("page", equalTo(3))
+		.body("page", equalTo(4))
 		.body("per_page", equalTo(6))
 		.log().all()
 		.extract().response();
 		
 	
-		
+		System.out.println("Support details : "+res.jsonPath().get("support.url").toString());
+		//System.out.println(res.jsonPath().get("data[0].email").toString());
 	
-	//res.jsonPath().get(data[0].email).toString();
 	
 }
 	}
